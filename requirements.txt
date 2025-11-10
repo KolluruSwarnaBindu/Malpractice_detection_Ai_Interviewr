@@ -1,0 +1,10 @@
+Flask>=3.0
+flask-socketio
+python-socketio
+python-engineio
+numpy
+Pillow
+opencv-python
+reportlab
+librosa
+soundfile

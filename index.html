@@ -1,0 +1,82 @@
+\
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>AI Interviewer — Bindu Full</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;margin:12px;background:#f6f8fb}
+    .row{display:flex;gap:12px}
+    .card{background:#fff;padding:12px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+    video{border-radius:8px;background:#000}
+    #log{height:160px;overflow:auto;background:#0b1220;color:#dff;padding:8px;border-radius:6px}
+    #hud{position:absolute;left:24px;top:24px;color:white}
+    button{padding:8px 10px;margin:4px}
+  </style>
+</head>
+<body>
+  <h2>AI Interviewer — Bindu (Full)</h2>
+
+  <div class="row">
+    <div class="card" style="flex:1">
+      <h3>Registration</h3>
+      <input id="reg_name" placeholder="Full name"/><br><br>
+      <video id="reg_video" width="320" height="240" autoplay muted></video><br>
+      <button id="capture_reg">Capture & Register Face</button>
+      <button id="record_voice">Record Voice (3s)</button>
+      <div id="reg_msg"></div>
+      <hr>
+      <h4>System Log Panel</h4>
+      <div id="log">Logs will appear here...</div>
+    </div>
+
+    <div class="card" style="flex:2;position:relative">
+      <h3>Call Screen <span id="clock"></span></h3>
+      <div style="position:relative;display:inline-block">
+        <video id="call_video" width="640" height="480" autoplay muted></video>
+        <canvas id="overlay" width="640" height="480" style="position:absolute;left:0;top:0"></canvas>
+        <div id="hud" style="background:rgba(0,0,0,0.6);padding:6px;border-radius:6px;color:white"></div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <input id="call_user" placeholder="Your name" />
+        <input id="call_id" placeholder="call id (optional)" />
+        <button id="preview_btn">Pre-call Preview (Rules)</button>
+        <button id="start_call">Start Call</button>
+        <button id="end_call">End Call</button>
+        <button id="generate_report">Generate Final Report</button>
+      </div>
+
+      <div style="margin-top:8px">
+        <h4>Question Bank</h4>
+        <div id="questions"></div>
+      </div>
+
+      <div style="margin-top:8px">
+        <h4>Transcript</h4>
+        <button id="start_transcript">Start</button>
+        <button id="stop_transcript">Stop</button>
+        <div id="transcript_area" style="min-height:40px;background:#eef;padding:8px;border-radius:6px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="rules_modal" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;align-items:center;justify-content:center;background:rgba(0,0,0,0.6)">
+    <div style="background:#fff;padding:20px;border-radius:8px;max-width:600px;margin:60px auto">
+      <h3>Interview Rules</h3>
+      <ul>
+        <li>No gadgets visible (phone, laptop).</li>
+        <li>Stay in frame and maintain eye contact.</li>
+        <li>Warnings up to 3 — termination on 3rd violation.</li>
+      </ul>
+      <button id="rules_ok">Agree & Continue</button>
+    </div>
+  </div>
+
+  <div id="toast" style="display:none;position:fixed;right:12px;top:12px;background:#111;color:#fff;padding:8px 12px;border-radius:6px"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
